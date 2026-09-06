@@ -4,9 +4,8 @@ YouTube -> WAV Downloader
 Interfata grafica simpla (Tkinter) pentru descarcarea audio-ului din
 linkuri YouTube si convertirea lui in format WAV, folosind yt-dlp.
 
-Ruleaza doar cu Python: python main.py
-Functioneaza pe Windows si Linux. Se poate transforma si intr-un
-executabil de sine statator cu PyInstaller (vezi README.md).
+Ruleaza cu: python main.py (vezi install_linux.sh / README.md pentru
+instalarea dependentelor pe Linux).
 """
 
 import os
@@ -19,12 +18,16 @@ import yt_dlp
 
 
 def get_ffmpeg_path():
-    """Gaseste binarul ffmpeg: intai in PATH (comun pe Linux), altfel
-    foloseste versiunea bundle-uita de imageio-ffmpeg (comun pe Windows)."""
+    """Gaseste binarul ffmpeg instalat pe sistem (in PATH). Daca nu e
+    gasit, foloseste ca rezerva pachetul imageio-ffmpeg, atunci cand
+    este instalat."""
     system_ffmpeg = shutil.which("ffmpeg")
     if system_ffmpeg:
         return system_ffmpeg
-    import imageio_ffmpeg
+    try:
+        import imageio_ffmpeg
+    except ImportError:
+        return None
 
     return imageio_ffmpeg.get_ffmpeg_exe()
 
