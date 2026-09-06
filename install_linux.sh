@@ -62,6 +62,7 @@ Type=Application
 Name=$APP_NAME
 Comment=Descarca audio de pe YouTube in format WAV
 Exec=$LAUNCHER
+Icon=$APP_DIR/icons/youtube-wav-downloader.png
 Terminal=false
 Categories=AudioVideo;Utility;
 EOF

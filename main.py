@@ -29,12 +29,30 @@ def get_ffmpeg_path():
     return imageio_ffmpeg.get_ffmpeg_exe()
 
 
+def set_window_icon(root):
+    """Seteaza iconita ferestrei, daca gaseste fisierul icons/youtube-wav-downloader.png
+    langa acest script (nu e o eroare fatala daca lipseste)."""
+    icon_path = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "icons",
+        "youtube-wav-downloader.png",
+    )
+    if os.path.isfile(icon_path):
+        try:
+            icon_img = tk.PhotoImage(file=icon_path)
+            root.iconphoto(True, icon_img)
+            root._icon_img_ref = icon_img  # evita garbage-collection
+        except tk.TclError:
+            pass
+
+
 class DownloaderApp:
     def __init__(self, root):
         self.root = root
         root.title("YouTube -> WAV Downloader")
         root.geometry("620x480")
         root.minsize(560, 420)
+        set_window_icon(root)
 
         tk.Label(root, text="Link-uri YouTube (unul pe linie):", anchor="w").pack(
             fill="x", padx=10, pady=(10, 0)
