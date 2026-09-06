@@ -1,0 +1,9 @@
+yt-dlp>=2024.1.1
+
+# Necesar doar daca NU ai deja ffmpeg instalat pe sistem (ex. Windows).
+# Pe Linux, daca ai `ffmpeg` instalat (pacman -S ffmpeg / apt install ffmpeg),
+# aceasta dependenta e ignorata automat.
+imageio-ffmpeg>=0.4.9
+
+# Necesar doar daca vrei sa construiesti un executabil de sine statator.
+pyinstaller>=6.0.0
